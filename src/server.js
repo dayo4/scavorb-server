@@ -29,7 +29,7 @@ app.register(require('fastify-static'), {
 //Import all the app's processed Api route functions
 app.register(require('./processors'))
 
-//preStartConfig
+//preStartConfig //
 const preStartConfig = require('./processors/admin/preStartConfig/')
 
 //Start the server
