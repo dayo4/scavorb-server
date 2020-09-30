@@ -1,4 +1,4 @@
-const { knex } = require('../../../plugins')
+const { hlp, knex } = require('../../../plugins')
 
 module.exports = {
 
