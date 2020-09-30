@@ -1,0 +1,10 @@
+node_modules
+.env
+# !src/public/
+# src/public/*
+# !src/uploads/images/users
+src/uploads/images/users/*
+!1.jpg
+
+src/uploads/images/posts/*
+!src/uploads/images/posts
