@@ -1,4 +1,5 @@
 node_modules
+mysql
 .env
 # !src/public/
 # src/public/*
