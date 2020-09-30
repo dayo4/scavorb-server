@@ -4,12 +4,11 @@ const { knex, bcrypt, hlp } = require('../../../plugins')
 module.exports = {
 
     async register () {
-        const data = { username: 'dayo', email: 'dayo@dayo.com' }
-        // const mediaBaseUrl = '//' + request.hostname + '/image/'
+        const data = { username: 'dayo', email: 'dayo4@live.com' }
 
         try
         {
-            const hashedPassword = await bcrypt.hash('12345678', 10)
+            const hashedPassword = await bcrypt.hash('scav03212', 12)
 
             const adjustedData = {
                 ...data,
@@ -20,13 +19,12 @@ module.exports = {
                 last_name: 'Adeniyi',
                 active: true,
                 verified: true,
-                about: 'I am a fullstack web developer',
+                about: `I am a fullstack web developer who loves exploring deeper the nature of things and experimenting with different strategies. I enjoy engaging in intuitive conversations and visualization about the abstract design of nature and derive pleasure in driving the architecture of things towards perfection. 
+        I'm often quite definite about missions, not relenting until a useful solution is delivered.`,
                 status: "I'm available. Feel free to message me."
             }
 
-            const id = await knex('users').insert(adjustedData)
-            // const priv = await knex('priv').insert({ user_id: id, level: 10 })
-            return id
+            return await knex('users').insert(adjustedData)
         }
         catch (e)
         {

@@ -3,10 +3,9 @@ const Schemas = require('./Schemas')
 
 module.exports = async (app, options) => {
 
-    // create
-    app.post('/createMany', {
-        preValidation: [ (req, reply, done) => { req.verify = [ 9, 10 ]; done() }, app.AuthHooks.verifyUser ]
-    }, Auth.createMany)
+    // app.post('/createMany', {
+    //     preValidation: [ (req, reply, done) => { req.verify = [ 9, 10 ]; done() }, app.AuthHooks.verifyUser ]
+    // }, Auth.createMany)
 
 
     app.post('/register', {

@@ -63,16 +63,7 @@ module.exports = {
                     }
                 }
             ]
-            // else if(published)
-            //     schema = [
-            //         {
-            //             fieldName: 'Content',
-            //             data: request.body.content,
-            //             rules: {
-            //                 required: true,
-            //             },
-            //         }
-            //     ]
+
             if (validator.validate(schema))
             {
                 done()

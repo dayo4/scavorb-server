@@ -1,6 +1,5 @@
-// const fastifyPlugin = require('fastify-plugin')
 require('dotenv').config()
-// const knexConnector = async (app, options = {}) => {
+
 const knex = require('knex')({
     client: 'mysql',
     connection: {
@@ -9,11 +8,7 @@ const knex = require('knex')({
         user: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         database: 'crimson',
-        // filename: "./crimson.sqlite"
     },
-    // useNullAsDefault: true
 })
-// app.decorate('knex', db)
-// }
 
 module.exports = knex

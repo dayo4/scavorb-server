@@ -3,10 +3,8 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 require('dotenv').config()
 
-
 async function sharedEmailVerificationFunction (email, request) {
     const alreadyRecorded = await knex('unverified_users').where({ email }).select('expiration').first()
-
     const secret = crypt.genString(8)
     const token = crypt.encrypt(JSON.stringify({ email, secret }))
     const mailOptions = mailer.templates.verifyEmail(`http://${process.env.NODE_ENV === 'production' ? request.headers.host : 'localhost:8080'}/confirmation/${token}`, email)
@@ -46,8 +44,7 @@ module.exports = {
             const adjustedData = {
                 ...data,
                 password: hashedPassword,
-                profile_image: /* 'defaults/usr/ */'1.jpg',
-                // last_name: randomName(),
+                profile_image: '1.jpg',
                 about: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita iure accusamus consequuntur totam officia vel ipsa dolor, porro nesciunt ratione quo nulla, minima obcaecati, provident vitae sapiente voluptas autem libero?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita iure accusamus consequuntur totam officia vel ipsa dolor, porro nesciunt ratione quo nulla, minima obcaecati, provident vitae sapiente voluptas autem libero.',
                 status: "Hey there! I'm available."
             }
@@ -56,7 +53,6 @@ module.exports = {
             if (user_id)
             {
                 return await sharedEmailVerificationFunction(email, request)
-                // return await knex.select('id', 'username', 'email').from('users').where('id', user_id).first()
             }
         }
         catch (e)
@@ -73,9 +69,7 @@ module.exports = {
                     hlp.error(e)
             else
                 hlp.error(e)
-
         }
-
     },
 
     async login (request) {
@@ -138,46 +132,11 @@ module.exports = {
             {
                 hlp.error("Incorrect login details, verify and try again", 403)
             }
-
         }
         catch (e)
         {
             hlp.error(e)
         }
-    },
-
-    async createMany (request, reply) {
-        for (let i = 0; i < 20; i++)
-        {
-            const data = {
-                username: `test${i}`, email: `test${i}@test.com`, password: '12345678'
-            }
-            // const mediaBaseUrl = '//' + request.hostname + '/image/'
-
-            const someNames = [ "Aaran", "Aaren", "Aarez", "Aarman", "Aaron", "Aaron-James", "Aaryan", "Aaryn", "Aayan", "Aazaan", "Abaan", "Abbas", "Abdallah", "Abdalroof", "Abdihakim", "Abdirahman", "Abdisalam", "Abdul", "Abdul-Aziz", "Abdulbasir", "Abdulkadir", "Abdulkarem", "Abdulkhader", "Abdullah", "Abdul-Majeed", "Abdulmalik", "Abdul-Rehman", "Abdur", "Abdurraheem", "Abdur-Rahman", "Abdur-Rehmaan", "Abel", "Abhinav", "Abhisumant", "Abid", "Abir", "Abraham", "Abu", "Abubakar", "Ace", "Adain", "Adam", "Adam-James", "Addison", "Addisson", "Adegbola", "Adegbolahan", "Aden", "Adenn", "Adie", "Adil", "Aditya", "Adnan", "Adrian", "Adrien", "Aedan", "Aedin", "Aedyn", "Aeron", "Afonso", "Ahmad", "Ahmed", "Ahmed-Aziz", "Ahoua", "Ahtasham", "Aiadan", "Aidan", "Aiden", "Aiden-Jack", "Aiden-Vee", "Aidian", "Aidy", "Ailin", "Aiman", "Ainsley", "Ainslie", "Airen", "Airidas", "Airlie", "AJ", "Ajay", "A-Jay", "Ajayraj", "Akan", "Akram", "Al", "Ala", "Alan", "Alanas", "Alasdair", "Alastair", "Alber", "Albert", "Albie", "Aldred", "Alec", "Aled", "Aleem", "Aleksandar", "Aleksander", "Aleksandr", "Aleksandrs", "Alekzander", "Alessandro", "Alessio", "Alex", "Alexander", "Alexei", "Alexx", "Alexzander", "Alf", "Alfee", "Alfie", "Alfred", "Alfy", "Alhaji", "Al-Hassan", "Ali", "Aliekber", "Alieu", "Alihaider", "Alisdair", "Alishan", "Alistair", "Alistar", "Alister", "Aliyaan", "Allan", "Allan-Laiton", "Allen", "Allesandro", "Allister", "Ally", "Alphonse", "Altyiab", "Alum", "Alvern", "Alvin", "Alyas", "Amaan", "Aman", "Amani", "Ambanimoh", "Ameer", "Amgad", "Ami", "Amin", "Amir", "Ammaar", "Ammar", "Ammer", "Amolpreet", "Amos", "Amrinder", "Amrit", "Amro", "Anay", "Andrea", "Andreas", "Andrei", "Andrejs", "Andrew", "Andy", "Anees", "Anesu", "Angel", "Angelo", "Angus", "Anir", "Anis", "Anish", "Anmolpreet", "Annan", "Anndra", "Anselm", "Anthony", "Anthony-John", "Antoine", "Anton", "Antoni", "Antonio", "Antony", "Antonyo", "Anubhav", "Aodhan", "Aon", "Aonghus", "Apisai", "Arafat", "Aran", "Arandeep", "Arann", "Aray", "Arayan", "Archibald", "Archie", "Arda", "Ardal", "Ardeshir", "Areeb", "Areez", "Aref", "Arfin", "Argyle", "Argyll", "Ari", "Aria", "Arian", "Arihant", "Aristomenis", "Aristotelis", "Arjuna", "Arlo", "Armaan", "Arman", "Armen", "Arnab", "Arnav", "Arnold", "Aron", "Aronas", "Arran", "Arrham", "Arron", "Arryn", "Arsalan", "Artem", "Arthur", "Artur", "Arturo", "Arun", "Arunas", "Arved", "Arya", "Aryan", "Aryankhan", "Aryian", "Aryn", "Asa", "Asfhan", "Ash", "Ashlee-jay", "Ashley", "Ashton", "Ashton-Lloyd", "Ashtyn", "Ashwin", "Asif", "Asim", "Aslam", "Asrar", "Ata", "Atal", "Atapattu", "Ateeq", "Athol", "Athon", "Athos-Carlos", "Atli", "Atom", "Attila", "Aulay", "Aun", "Austen", "Austin", "Avani", "Averon" ]
-            function randomName () {
-                return someNames[ Math.floor(Math.random() * someNames.length) ]
-            }
-
-            const adjustedData = {
-                ...data,
-                profile_image: 'default.jpeg',
-                first_name: randomName(),
-                last_name: randomName(),
-                about: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita iure accusamus consequuntur totam officia vel ipsa dolor, porro nesciunt ratione quo nulla, minima obcaecati, provident vitae sapiente voluptas autem libero?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita iure accusamus consequuntur totam officia vel ipsa dolor, porro nesciunt ratione quo nulla, minima obcaecati, provident vitae sapiente voluptas autem libero.'
-            }
-
-            await knex('users').insert(adjustedData)
-
-                .then(() => {
-                    count++
-                    reply.send("successfull!")
-                })
-
-                .catch((e) => reply.status(500).send(e))
-
-        }
-        return reply
     },
 
     async getSettings (request) {
@@ -228,7 +187,7 @@ module.exports = {
 
     async resetPassword (request) {
         const { stage_1, stage_2, stage_3 } = request.body
-        console.log(request.body)
+
         try
         {
             if (stage_1)
@@ -242,8 +201,6 @@ module.exports = {
                 {
                     const alreadyRecorded = await knex('reset_password').where({ email }).select('email').first()
                     const secret = crypt.genString(8)
-                    // const token = crypt.encrypt(JSON.stringify({ email: email, secret }))
-                    // console.log(JSON.parse(crypt.decrypt(token)))
                     const mailOptions = mailer.templates.resetPassword(/* `http://${process.env.NODE_ENV === 'production' ? request.headers.host : 'localhost:8080'}/reset/${token}` */secret, email, foundUser.first_name)
                     const sent = await mailer.transport.sendMail(mailOptions)
                     if (sent)
@@ -256,7 +213,6 @@ module.exports = {
                         return {
                             stage: 2, info: 'Code sent! Copy the confirmation code sent to your e-mail and paste into the input field above. Code expires in 5 minutes. Check your inbox or spam folder.'
                         }
-                        // return 'Link sent! Click the password reset link sent to your e-mail to complete the process. Check your inbox or spam folder.'
                     } else
                     {
                         hlp.error('Encountered a network error, please try again.')
@@ -267,7 +223,6 @@ module.exports = {
                 const { token, email } = stage_2
 
                 let found = await knex('reset_password').where({ email, secret: token }).select('expiration').first()
-                // console.log(found, token)
                 if (found)
                     if (found.expiration < Date.now())
                     {
@@ -303,84 +258,4 @@ module.exports = {
             hlp.error(e)
         }
     }
-
 }
-
-// async resetPassword(request) {
-//     const { email, token, update } = request.body
-//     console.log(request.body)
-//     try
-//     {
-//         if (email)
-//         {
-//             const foundUser = await knex('users').where({ email }).select('email', 'first_name').first()
-//             if (!foundUser)
-//             {
-//                 hlp.error("This e-mail address is not yet registered", 403)
-//             } else
-//             {
-//                 const alreadyRecorded = await knex('reset_password').where({ email }).select('email').first()
-//                 const secret = crypt.genString(8)
-//                 const token = crypt.encrypt(JSON.stringify({ email, secret }))
-//                 console.log(JSON.parse(crypt.decrypt(token)))
-//                 const mailOptions = mailer.templates.resetPassword(`http://${process.env.NODE_ENV === 'production' ? request.headers.host : 'localhost:8080'}/reset/${token}`, email, foundUser.first_name)
-//                 const sent = await mailer.transport.sendMail(mailOptions)
-//                 if (sent)
-//                 {
-//                     if (alreadyRecorded)
-//                         await knex('reset_password').where({ email }).update({ secret, expiration: Date.now() + 3600000 })
-//                     else
-//                         await knex('reset_password').insert({ email, secret, expiration: Date.now() + 3600000 })
-//                     return 'Link sent! Click the password reset link sent to your e-mail to complete the process. Check your inbox or spam folder.'
-//                 } else
-//                 {
-//                     hlp.error('Encountered a network error, please try again.')
-//                 }
-//             }
-//         } else if (token)
-//         {
-//             const data = JSON.parse(crypt.decrypt(token))
-//             if (data)
-//             {
-//                 let exp = await knex('reset_password').where({ email: data.email, secret: data.secret }).select('expiration').first()
-//                 if (exp)
-//                     if (exp.expiration < Date.now())
-//                     {
-//                         console.log(new Date(exp.expiration))
-//                         console.log(new Date(Date.now()))
-//                         hlp.error('This reset link has expired.')
-//                     }
-//                     else
-//                     {
-//                         await knex('reset_password').where({ email: data.email }).update({ verified: true })
-//                         return { next: true, email: data.email }
-//                     }
-//                 else
-//                 {
-//                     hlp.error('Invalid password reset link')
-//                 }
-//             } else
-//             {
-//                 hlp.error('Invalid password reset link')
-//             }
-//         } else if (update)
-//         {
-//             const { email, password } = update
-//             const verified = await knex('reset_password').where({ email, verified: true }).first()
-//             if (verified)
-//             {
-//                 const hashedPassword = await bcrypt.hash(password, 10)
-//                 const updated = await knex('users').where({ email }).update({ password: hashedPassword, verified: true, active: true })
-//                 if (updated)
-//                 {
-//                     await knex('reset_password').where({ email }).del()
-//                     return 'Your account has been updated'
-//                 }
-//             }
-
-//         }
-//     } catch (e)
-//     {
-//         hlp.error(e)
-//     }
-// }

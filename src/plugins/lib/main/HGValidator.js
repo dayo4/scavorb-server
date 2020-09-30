@@ -22,7 +22,6 @@ var HGValidator = /** @class */ (function () {
                         else if (!(index_1.hasIt(skip, x.fieldName))) {
                             return x;
                         }
-                        console.log('skipped ' + x.fieldName);
                         return;
                     }
                     return x;
@@ -64,11 +63,8 @@ var HGValidator = /** @class */ (function () {
                 }
             }
             if (index_1.isEmptyObj(this.errors) && validation_count > 0) {
-                console.log(validation_count);
                 return true;
             }
-            console.log(this.errors);
-            console.log(validation_count);
             return false;
         }
     };

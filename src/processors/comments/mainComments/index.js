@@ -1,11 +1,8 @@
-// const { app, knex } = require('../../../plugins')
 require('./socket')
 const Comments = require('./httpServices')
 const Validation = require('../Schemas')
 
-
 module.exports = async (app, options) => {
-
 
     app.post('/comments/new/:user_id/:post_id', {
         preValidation: app.AuthHooks.verifyUser,
@@ -13,12 +10,8 @@ module.exports = async (app, options) => {
     },
         Comments.create)
 
-    /* limit and offset parameters to define fetch quantity.. */
-    // app.get('/comments/:post_id/:query', { schema: '' }, Comments.findComments)
-
     app.get('/comments/:comment_id',
         {
-            // preValidation: app.AuthHooks.verifyUser,
             schema: '',
         },
         Comments.findOne)
@@ -34,10 +27,5 @@ module.exports = async (app, options) => {
         preValidation: app.AuthHooks.verifyUser,
         schema: ''
     }, Comments.delete)
-
-
-    /* WEB SOCKET */
-
-
 
 }

@@ -1,6 +1,5 @@
 const { knex } = require('../../../plugins')
 
-
 module.exports = {
 
     async createTable () {

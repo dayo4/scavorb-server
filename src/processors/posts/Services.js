@@ -62,12 +62,7 @@ module.exports = {
             }))
 
             return { posts, count: postCount[ 0 ][ "count(*)" ] }
-            // return new Promise(function (res, reg) {
 
-            //     setTimeout(function () {
-            //         res({ posts, count: postCount[ 0 ][ "count(*)" ] })
-            //     }, 3000)
-            // })
         }
         catch (e)
         {
@@ -148,7 +143,6 @@ module.exports = {
             } else
             {
                 hlp.error('The requested page could not be located', 404)
-
             }
         }
         catch (e)

@@ -7,11 +7,9 @@ module.exports = {
 
         const user_id = request.params.user_id
         const title = request.body.title
-        // const about = request.body.about
-        // const features = request.body.features
         const detail = request.body.detail
-        const images = request.body.images
-        // const content = sanitizeHTML(request.body.content)
+        // const images = request.body.images
+
         const data = {
             title,
             detail,
@@ -19,9 +17,7 @@ module.exports = {
 
         try
         {
-            const id = await knex('portfolios_projects').insert({ ...data, user_id: user_id })
-
-            return id
+            return await knex('portfolios_projects').insert({ ...data, user_id: user_id })
         }
         catch (e)
         {
@@ -91,7 +87,6 @@ module.exports = {
     async delete (request) {
         const user_id = request.params.user_id
         const project_id = request.params.project_id
-        console.log(user_id, project_id)
         try
         {
             const deleted = await knex('portfolios_projects').where('user_id', user_id).andWhere('id', project_id).del()

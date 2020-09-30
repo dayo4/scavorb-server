@@ -5,9 +5,7 @@ module.exports = async (app, options) => {
 
 
     app.get('/users/:username',
-        {
-            // schema: Schema.findOne,
-        },
+        {},
         User.findOne)
 
     app.patch('/users/:id',

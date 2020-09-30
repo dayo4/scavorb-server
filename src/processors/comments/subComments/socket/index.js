@@ -1,7 +1,5 @@
-const { WS, knex } = require('../../../../plugins')
+const { WS } = require('../../../../plugins')
 const Comments = require('./Services')
-
-
 const SOCKET = WS.of((/^\/subComments\/fetch-\d+$/))
 
 SOCKET.on('connect', (socket) => {
@@ -14,7 +12,8 @@ SOCKET.on('connect', (socket) => {
     socket.on('fetch', (eventData) => {
         const data = JSON.parse(eventData)
         room_id = data.comment_id
-        if (!userExist) {
+        if (!userExist)
+        {
             socket.join('subComm-' + room_id)
             userExist = true
         }
@@ -23,7 +22,6 @@ SOCKET.on('connect', (socket) => {
     })
 
     socket.on('newComment', () => {
-        console.log(room_id)
         SOCKET.to('subComm-' + room_id).emit('serverUpdated')
     })
 

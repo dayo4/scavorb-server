@@ -1,7 +1,5 @@
 const { knex, path, fsx, bcrypt, hlp } = require('../../../plugins')
 
-
-
 module.exports = {
     async findAll (request) {
         const query = JSON.parse(request.body.query)

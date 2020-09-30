@@ -2,7 +2,7 @@ require('dotenv').config()
 const crypto = require('crypto')
 
 const algorithm = 'aes-256-cbc'
-const ENCRYPTION_KEY = /* Buffer.from( */process.env.CRYPTO_KEY/* , 'base64') */
+const ENCRYPTION_KEY = process.env.CRYPTO_KEY
 const iv = crypto.randomBytes(16)
 
 module.exports = {

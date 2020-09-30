@@ -1,5 +1,5 @@
 
-// The fastify framework
+/* The fastify framework */
 const app = require('fastify')({
     logger: true
     // logger:
@@ -9,6 +9,5 @@ const app = require('fastify')({
     //     file: 'logs/logs'
     // }
 })
-
 
 module.exports = app

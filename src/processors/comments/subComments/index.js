@@ -12,7 +12,6 @@ module.exports = async (app, options) => {
 
     app.get('/subComments/:comment_id',
         {
-            // preValidation: app.AuthHooks.verifyUser,
             schema: '',
         },
         subComments.findOne)

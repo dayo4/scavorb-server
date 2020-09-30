@@ -13,14 +13,11 @@ const { hlp, mailer } = require('../../plugins')
 //         console.log(data)
 // })
 
-
 module.exports = {
     async send (request) {
         const { email, name, subject, message, id } = request.body
         try
         {
-            // const user = await knex.select().from('users').where('id', id ? id : 1).first()
-
             const mailOptions = {
                 from: `${name} <${email}>`,
                 to: 'dayorx68g@gmail.com',

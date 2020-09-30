@@ -20,15 +20,11 @@ SOCKET.on('connect', (socket) => {
             userExist = true
         }
         console.log('All rooms ', Object.keys(socket.rooms))
-        // console.log('All rooms ', socket)
         Comments.findComments(socket, data)
     })
 
     socket.on('newComment', () => {
         SOCKET.to('comm-' + room_id).emit('serverUpdated')
         WS.of('/posts/mainfeed').to('posts-mainfeed').emit('serverUpdated')
-
     })
-
-
 })

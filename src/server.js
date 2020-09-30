@@ -11,10 +11,7 @@ app.register(require('fastify-cors'), {
         process.env.NODE_ENV === 'development' ?
             [ "http://localhost:8080", "http://127.0.0.1:8080" ] : ""
 })
-// // app.register(require('./plugins/hgvalidator'))
-// const ff = require('connect-history-api-fallback')
-// app.register(ff())
-// app.
+
 //register global app hooks and plugins
 app.register(require('./globalHooks/AuthorizationHooks'), {})
 

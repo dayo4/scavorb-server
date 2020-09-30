@@ -47,11 +47,8 @@ module.exports = {
 
         for (const url of images)
         {
-            console.log(url)
             const imagePath = path.join(__dirname, '../..', 'uploads/images/posts/' + user_id, url)
-            fsx.remove(imagePath).then(() => {
-                console.log('deleted an image from directory.')
-            }).catch(e => {
+            fsx.remove(imagePath).then(() => { }).catch(e => {
                 reply.status(500).send(e)
             })
         }

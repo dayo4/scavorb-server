@@ -16,7 +16,6 @@ exports.up = function (knex) {
                 table.string('cover_image', 255)
                 table.integer('priv').defaultTo(0)
                 table.boolean('verified').defaultTo(false)
-                // table.string('reset_password', 255)
                 table.boolean('active').defaultTo(false)
                 table.boolean('blacklisted').defaultTo(false)
                 table.timestamps(true, true)

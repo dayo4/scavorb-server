@@ -91,8 +91,5 @@ module.exports = {
         {
             reply.status(400).send({ message: validator.getErrors({ format: 'single' }) })
         }
-
     }
-
-
 }

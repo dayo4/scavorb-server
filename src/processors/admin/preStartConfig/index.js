@@ -17,7 +17,6 @@ module.exports = {
                     const initialized = await Promise.all([ UserZero.register(), Settings.createTable() ])
                     if (initialized)
                         return await fsx.writeJson(path.join(__dirname, 'conf.json'), { initialized: true })
-                    // hlp.error('unfulfilled promise in prestart config')
                 } catch (e)
                 {
                     hlp.error(e)
