@@ -1,5 +1,5 @@
 require('dotenv').config()
-const nodeMailer = require('nodeMailer')
+const nodeMailer = require('nodemailer')
 const templates = require('./templates')
 
 const transport = nodeMailer.createTransport({
