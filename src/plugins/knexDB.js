@@ -7,7 +7,7 @@ const knex = require('knex')({
         // port: 3000,
         user: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
-        database: 'scavorb',
+        database: process.env.DB_NAME,
     },
 })
 
