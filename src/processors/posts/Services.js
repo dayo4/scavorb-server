@@ -123,14 +123,15 @@ module.exports = {
     },
 
     async findOne (request, reply) {
-        const post_id = request.params.post_id
+        const slug = request.params.slug
+        const query = request.params.preview ? { slug: slug } : { published: true, slug: slug }
         try
         {
-            const post = await knex.select('id', 'title', 'slug', 'content', 'img', 'user_id', 'created_at', 'updated_at').from('posts').where({ id: post_id, published: true }).first()
+            const post = await knex.select('id', 'title', 'slug', 'content', 'img', 'user_id', 'created_at', 'updated_at').from('posts').where(query).first()
             if (post)
             {
                 const user = await knex.select('username', 'profile_image', 'status', 'about', 'first_name', 'last_name').from('users').where('id', post.user_id).first()
-                const commentCount = await knex('posts_comments').where('post_id', post_id).count()
+                const commentCount = await knex('posts_comments').where('post_id', post.id).count()
                 const contentImages = await knex('posts_images').select('urls').where('post_id', post.id).first()
 
                 return {
