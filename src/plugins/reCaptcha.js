@@ -1,37 +1,26 @@
-const request = require('request')
-const { hlp } = require('../plugins')
-
+require('dotenv').config()
+const fetch = require('node-fetch')
 
 module.exports = {
     async verifyCaptchaToken (token) {
         const verifyCaptchaOptions = {
-            uri: "https://www.google.com/recaptcha/api/siteverify",
-            json: true,
-            form: {
-                secret: process.env.CAPTCHA_SECRET,
-                response: token
-            }
+            method: 'POST',
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: `secret=${process.env.CAPTCHER_SECRET_KEY}&response=${token}`
         }
 
         try
         {
-            request.post(verifyCaptchaOptions, function (err, response, body) {
-                if (err)
-                {
-                    return "oops, something went wrong on our side"
-                }
-
-                if (!body.success)
-                {
-                    return body[ "error-codes" ].join(".")
-                }
-
-                //Save the user to the database. At this point they have been verified.
-                res.status(201).json({ message: "Congratulations! We think you are human." })
-            })
+            return fetch("https://www.google.com/recaptcha/api/siteverify", verifyCaptchaOptions)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    return data
+                })
+                .catch(e => console.log(e))
         } catch (e)
         {
-            hlp.error(error, code)
+            throw new Error(e)
         }
     }
 }

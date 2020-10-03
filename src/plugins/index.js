@@ -5,6 +5,7 @@ const WS = require('./webSocket')
 const knex = require('./knexDB')
 const validator = require('./validator')
 const mailer = require('./nodeMailer')
+const reCaptcha = require('./reCaptcha')
 const crypt = require('./crypt')
 
 
@@ -26,6 +27,7 @@ module.exports = {
     knex,
     validator,
     mailer,
+    reCaptcha,
     crypt,
     path,
     fsx,

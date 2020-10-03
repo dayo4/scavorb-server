@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { hlp, mailer } = require('../../plugins')
+const { hlp, mailer, reCaptcha, sanitizeHTML } = require('../../plugins')
 // const Verifier = require("email-verifier")
 // const verifyMail = new Verifier(process.env.VERIFIER_API_KEY/* , {
 //     retries: 2,
@@ -15,30 +15,43 @@ const { hlp, mailer } = require('../../plugins')
 
 module.exports = {
     async send (request) {
-        const { email, name, subject, message, id } = request.body
+        const email = request.body.email
+        const name = sanitizeHTML(request.body.name)
+        const subject = sanitizeHTML(request.body.subject)
+        const message = sanitizeHTML(request.body.message)
+        const token = request.body.token
+
         try
         {
             const mailOptions = {
                 from: `${name} <${email}>`,
-                to: 'dayorx68g@gmail.com',
+                to: 'scavorb@gmail.com',
                 subject: subject,
                 html: `
-                    <p>An email from <b>${name} ${email}</b></p>
-
+                    <p>An email sent from scavorb's contact form  by - <b>${name} ${email}</b></p>.
+                    <hr>
                     ${message}
                 `
             }
-
+            const captchaData = await reCaptcha.verifyCaptchaToken(token)
+            if (captchaData)
+            {
+                if (captchaData.success === true)
+                {
+                    const sent = await mailer.transport.sendMail(mailOptions)
+                    if (sent)
+                    {
+                        return 'Your Message has been sent! Thanks you.'
+                    }
+                    // console.log('failed')
+                }
+            }
 
             // return verifyMail.verify(email, {}, async (err, verified) => {
 
             // if (verified)
             // {
-            const sent = await mailer.sendMail(mailOptions)
-            if (sent)
-            {
-                return 'Your Message has been sent!'
-            }
+
             // else
             // {
             //     hlp.error('Unable to send mail, Try again soon.')
