@@ -76,7 +76,7 @@ var HGValidator = /** @class */ (function () {
             if (option && option.strict == false) {
                 return data.replace(/(<([script^>]+)>)/ig, "").trim();
             }
-            return data.replace(/(<([^>]+)>)/ig, "").replace(/[\s]+/g, ' ').trim();
+            return data.replace(/(<([^>]+)>)/ig, "").replace(/\s{2,}/g, ' ').trim();
         }
     };
     HGValidator.prototype.getErrors = function (options) {

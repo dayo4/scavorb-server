@@ -13,9 +13,9 @@ const apiRoutes = async (app, options) => {
     app.register(require('./mail'), { prefix: 'scv-v1' })
 
 
-    app.get('/service-worker.js', async (req, reply) => {
-        await reply.sendFile('index.html')
-    })
+    // app.get('/service-worker.js', async (req, reply) => {
+    //     await reply.sendFile('index.html')
+    // })
 
     app.setNotFoundHandler(async (req, reply) => {
         await reply.sendFile('index.html')
