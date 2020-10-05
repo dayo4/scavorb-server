@@ -1,6 +1,5 @@
-const { app, system, path, sanitizeHTML } = require('./plugins')
-const text = 'function(){}   kkkkk <img src=""> <img/>'
-console.log(sanitizeHTML(JSON.stringify({ text })))
+const { app, system, path } = require('./plugins')
+
 //environment variables
 require('dotenv').config()
 

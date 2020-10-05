@@ -19,7 +19,7 @@ module.exports = {
 
         try
         {
-            const post_id = await knex('posts').insert({ ...data, user_id: user_id })
+            const post_id = await knex('posts').insert({ ...data, user_id: user_id }, [ 'slug', 'id' ])
             if (contentImages)
             {
                 await knex('posts_images')
