@@ -34,7 +34,7 @@ module.exports = {
         // }
         if (system.settings.allow_new_reg === false)
         {
-            return "New registration is disallowed"
+            hlp.error("New registration is currently disallowed")
         }
 
         try

@@ -50,12 +50,12 @@ module.exports = {
             const schema = [
                 {
                     fieldName: 'Old Password',
-                    data: oldPassword,
+                    data: old_password,
                     rules: { string: true, min: 6, max: 50 }
                 },
                 {
                     fieldName: 'New Password',
-                    data: newPassword,
+                    data: new_password,
                     rules: { string: true, min: 6, max: 50 }
                 },
             ]
