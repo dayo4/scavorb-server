@@ -19,8 +19,7 @@ module.exports = {
                 last_name: 'Adeniyi',
                 active: true,
                 verified: true,
-                about: `I am a fullstack web developer who loves exploring deeper the nature of things and experimenting with different strategies. I enjoy engaging in intuitive conversations and visualization about the abstract design of nature and derive pleasure in driving the architecture of things towards perfection. 
-        I'm often quite definite about missions, not relenting until a useful solution is delivered.`,
+                about: `I am a fullstack web developer who loves exploring deeper the nature of things and experimenting with different strategies. I enjoy engaging in intuitive conversations and visualization about the abstract design of nature and desire driving the architecture of things towards precision.`,
                 status: "I'm available. Feel free to message me."
             }
 

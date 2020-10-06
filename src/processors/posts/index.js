@@ -13,7 +13,7 @@ module.exports = async (app, options) => {
     app.get('/posts/users/:user_id/:query', {}, Post.findUserPosts)
     app.post('/posts/users/:user_id', { preValidation: app.AuthHooks.verifyUser }, Post.findSettingsPost)
 
-    app.get('/posts/:post_id', {}, Post.findOne)
+    app.get('/posts/:slug/:preview', {}, Post.findOne)
 
     app.patch('/posts/:user_id',
         {

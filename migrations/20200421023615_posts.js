@@ -6,7 +6,7 @@ exports.up = function (knex) {
             return knex.schema.createTable('posts', table => {
                 table.increments('id').primary()
                 table.text('title').notNullable()
-                table.string('slug', 225).notNullable()
+                table.string('slug', 225).unique().notNullable()
                 table.string('img', 100)
                 table.longtext('content').notNullable()
                 table.boolean('published').defaultTo(false)

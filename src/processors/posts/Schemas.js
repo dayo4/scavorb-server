@@ -1,4 +1,4 @@
-const { validator } = require('../../plugins')
+const { validator, sanitizeHTML } = require('../../plugins')
 
 
 module.exports = {
@@ -7,7 +7,7 @@ module.exports = {
         const schema = [
             {
                 fieldName: 'Title',
-                data: validator.sanitize(request.body.title),
+                data: sanitizeHTML(request.body.title),
                 rules: {
                     required: true,
                     string: true,
@@ -43,7 +43,7 @@ module.exports = {
             schema = [
                 {
                     fieldName: 'Title',
-                    data: validator.sanitize(request.body.title),
+                    data: sanitizeHTML(request.body.title),
                     rules: {
                         required: true,
                         string: true,

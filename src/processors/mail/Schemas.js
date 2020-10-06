@@ -1,9 +1,9 @@
-const { validator } = require('../../plugins')
+const { validator, sanitizeHTML } = require('../../plugins')
 
 module.exports = {
 
     send (request, reply, done) {
-        const { email, name, subject, message } = request.body
+        const { email, name, subject, message, token } = request.body
 
         const schema = [
             {
@@ -16,7 +16,7 @@ module.exports = {
             },
             {
                 fieldName: 'Name',
-                data: name,
+                data: sanitizeHTML(name),
                 rules: {
                     required: true,
                     string: true,
@@ -26,22 +26,30 @@ module.exports = {
             },
             {
                 fieldName: 'Subject',
-                data: subject,
+                data: sanitizeHTML(subject),
                 rules: {
                     required: true,
                     string: true,
                     min: 3,
-                    max: 50
+                    max: 100
                 }
             },
             {
                 fieldName: 'Message',
-                data: message,
+                data: sanitizeHTML(message),
                 rules: {
                     required: true,
                     string: true,
-                    min: 50,
+                    min: 20,
                     max: 4000
+                }
+            },
+            {
+                fieldName: 'Token',
+                data: token,
+                rules: {
+                    required: true,
+                    string: true,
                 }
             }
         ]
