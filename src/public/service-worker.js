@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.177afb9cc509f3958b9e5ef743c388af.js"
+  "/precache-manifest.dc81d8f55d8b5ff1189a634b8e451b21.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "scavorb"});
