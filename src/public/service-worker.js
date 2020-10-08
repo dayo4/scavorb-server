@@ -17,7 +17,7 @@ importScripts(
   "/precache-manifest.36c1b99f7f176969a8cc1e395df6ff1e.js"
 )
 
-workbox.core.setCacheNameDetails({ prefix: "scavorb", suffix: 's2', })
+workbox.core.setCacheNameDetails({ prefix: "scavorb", suffix: 's3', })
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING')
