@@ -21,7 +21,7 @@ module.exports = {
                 rules: {
                     required: true,
                     min: 100,
-                    max: 3000
+                    // max: 3000
                 }
             }
         ]
