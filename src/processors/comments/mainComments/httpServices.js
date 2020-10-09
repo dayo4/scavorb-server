@@ -9,7 +9,7 @@ module.exports = {
 
         try
         {
-            const comment_id = await knex('posts_comments').insert({ content: comment, user_id: user_id, post_id: post_id })
+            const comment_id = null//await knex('posts_comments').insert({ content: comment, user_id: user_id, post_id: post_id })
 
             reply.send(comment_id)
         }
