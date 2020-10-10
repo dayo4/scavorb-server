@@ -3,7 +3,7 @@ const app = require('./fastify')
 
 const WS = require('socket.io')(app.server, {
     path: '/orbServer',
-    origins: process.env.NODE_ENV === 'development' ? [ "http://localhost:8080" ] : 'https://www.scavorb.com',
+    origins: process.env.NODE_ENV === 'development' ? [ "http://localhost:8080" ] : 'https://scavorb.com',
     serveClient: false
 })
 
