@@ -6,6 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "pm2 start src/server.js",
+    "restart": "pm2 restart src/server.js",
+    "stop": "pm2 restart src/server.js",
     "dev": "nodemon src/server.js",
     "prestart": "npx knex migrate:latest"
   },
