@@ -10,7 +10,7 @@ exports.up = function (knex) {
                 table.string('password', 255).notNullable()
                 table.string('first_name', 100)
                 table.string('last_name', 100).defaultTo('')
-                table.string('status', 50)
+                table.string('status', 150)
                 table.text('about')
                 table.string('profile_image', 255)
                 table.string('cover_image', 255)
