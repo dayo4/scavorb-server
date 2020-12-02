@@ -8,6 +8,11 @@ SOCKET.on('connect', (socket) => {
     let userExist = false
     let room_id
     SOCKET.use((socket, next) => {
+        // var handshakeData = socket.request;
+        // make sure the handshake data looks good
+        // if error do this:
+        // next(new Error("not authorized"));
+        // else just call next
         next()
     })
 
@@ -19,7 +24,7 @@ SOCKET.on('connect', (socket) => {
             socket.join('comm-' + room_id)
             userExist = true
         }
-        console.log('All rooms ', Object.keys(socket.rooms))
+        console.log('All rooms ', socket.rooms)
         Comments.findComments(socket, data)
     })
 

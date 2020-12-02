@@ -1,4 +1,4 @@
-const { app, system, path } = require('./plugins')
+const { app, system, path, fsx } = require('./plugins')
 
 //environment variables
 require('dotenv').config()
@@ -11,6 +11,7 @@ app.register(require('fastify-cors'), {
         process.env.NODE_ENV === 'development' ?
             [ "http://localhost:8080", "http://127.0.0.1:8080" ] : ""
 })
+
 
 //register global app hooks and plugins
 app.register(require('./globalHooks/AuthorizationHooks'), {})
@@ -29,7 +30,7 @@ app.register(require('fastify-static'), {
 //Import all the app's processed Api route functions
 app.register(require('./processors'))
 
-//preStartConfig //
+//preStartConfig 
 const preStartConfig = require('./processors/admin/preStartConfig/')
 
 //Start the server
