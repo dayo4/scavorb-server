@@ -9,7 +9,7 @@ app.register(require('fastify-multipart'))
 app.register(require('fastify-cors'), {
     origin:
         process.env.NODE_ENV === 'development' ?
-            [ "http://localhost:8080", "http://127.0.0.1:8080" ] : ""
+            ["http://localhost:8080", "http://127.0.0.1:8080", "http://localhost:4000"] : ""
 })
 
 
@@ -35,8 +35,7 @@ const preStartConfig = require('./processors/admin/preStartConfig/')
 
 //Start the server
 const start = async () => {
-    try
-    {
+    try {
         // await app.listen(process.env.PORT, process.env.NODE_ENV === 'production' ? '0.0.0.0' : '127.0.0.1')
         await app.listen(process.env.PORT, process.env.HOST)
             .then(() => {
@@ -45,8 +44,7 @@ const start = async () => {
                 )
             })
         // app.log.info(`server listening on ${ app.server.address().port }`)
-    } catch (err)
-    {
+    } catch (err) {
         app.log.error(err)
         process.exit(1)
     }
