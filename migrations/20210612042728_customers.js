@@ -1,17 +1,16 @@
 
 exports.up = function (knex) {
-    return knex.schema.hasTable('posts_comments').then(exists => {
+    return knex.schema.hasTable('customers').then(exists => {
         if (!exists)
         {
-            return knex.schema.createTable('posts_comments', table => {
+            return knex.schema.createTable('customers', table => {
                 table.increments('id').primary()
                 table.text('content').notNullable()
-                table.string('author_ip')
                 table.integer('thumbs_up')
                 table.integer('thumbs_down')
                 table.integer('user_id').unsigned().references('id').inTable('users').onUpdate('CASCADE').onDelete('CASCADE')
+                table.integer('comment_id').unsigned().references('id').inTable('posts_comments').onUpdate('CASCADE').onDelete('CASCADE')
                 table.integer('post_id').unsigned().references('id').inTable('posts').onUpdate('CASCADE').onDelete('CASCADE')
-                table.integer('parent_id').unsigned().references('id').inTable('posts_comments').onUpdate('CASCADE').onDelete('CASCADE')
                 table.timestamps(true, true)
             })
         }
@@ -19,5 +18,6 @@ exports.up = function (knex) {
 }
 
 exports.down = function (knex) {
-    return knex.schema.dropTable('posts_comments')
+    return knex.schema.dropTable('customers')
+
 }
